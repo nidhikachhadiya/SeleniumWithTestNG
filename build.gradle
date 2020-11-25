@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    seleniumVersion = '3.141.59'
+    junitVersion = '4.12'
+    testng='6.14.3'
+    webDriverManagerVersion='3.3.0'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: seleniumVersion
+    compile group: 'org.testng', name: 'testng', version: testng
+    testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: webDriverManagerVersion
+}
+
+test{
+    useTestNG{
+    }
+}
