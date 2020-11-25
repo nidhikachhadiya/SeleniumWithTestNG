@@ -1,7 +1,18 @@
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.8.1"
+    }
+}
 plugins {
     id 'java'
+    id "io.qameta.allure" version "2.8.1"
 }
-
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -9,6 +20,8 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    mavenLocal()
+    jcenter()
 }
 
 ext {
@@ -22,10 +35,24 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: junitVersion
     testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: seleniumVersion
     compile group: 'org.testng', name: 'testng', version: testng
+    compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.12.1'
     testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: webDriverManagerVersion
 }
 
 test{
     useTestNG{
     }
+
+    test.outputs.upToDateWhen {false}
+
 }
+
+
+allure {
+    version = '2.8.0'
+    useTestNG {
+        version = '2.8.0'
+    }
+    downloadLink = "https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.8.0/allure-commandline-2.8.0.zip"
+}
+//test.finalizedBy(allure)

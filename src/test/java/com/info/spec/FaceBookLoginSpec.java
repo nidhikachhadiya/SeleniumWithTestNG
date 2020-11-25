@@ -24,7 +24,7 @@ public class FaceBookLoginSpec {
         driver.get("https://www.facebook.com/");
     }
 
-    @Test(enabled = false)
+    @Test
     public void validateLogin() {
         driver.get("https://www.facebook.com/");
         driver.findElement(By.id("email")).sendKeys("nidhi3578@gmail.com");
@@ -33,7 +33,7 @@ public class FaceBookLoginSpec {
         String ActualErrorMessage = driver.findElement(By.className("_9ay7")).getText();
         String ExpectedErrorMessage = "The password that you've entered is incorrect. Forgotten password?";
         if (ActualErrorMessage.equals(ExpectedErrorMessage)) {
-            System.out.println("Test Pass");
+            System.out.println("Test Pass") ;
         } else {
             System.out.println("Test Failed");
         }
